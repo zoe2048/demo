@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load quotes_extras %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Quotes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row header-box">
+            <div class="col-md-8">
+                <h1>
+                    <a href="" style="text-decoration: none">Quotes to Scrape</a>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <a>Login</a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {% for quote in quotes %}
+                <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+                    <span class="text" itemprop="text">{{ quote.content }}</span>
+                    <span>
+                        by
+                        <small class="author" itemprop="author">{{ quote.author }}</small>
+                        <a href="../../author/{{ quote.author }}">(about)</a>
+                    </span>
+                    <div class="tags">
+                             Tags:
+                        <meta class="keywords" itemprop="keywords" content={{ quote.tags }}>
+                        {% for tag in quote.tags|s_list:',' %}
+                        <a class="tag">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                <nav>
+                    <ul class="pager">
+                        {% if quotes.has_next %}
+                        <li class="next">
+                            <a href="/page/{{ quotes.next_page_number }}">
+                                Next
+                                <span aria-hidden="true">→</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if quotes.has_previous %}
+                        <li class="previous">
+                            <a href="/page/{{ quotes.previous_page_number }}">
+                                <span aria-hidden="true">←</span>
+                                 Previous
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4 tags-box">
+                <h2>Top Ten tags</h2>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 28px">love</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 26px">inspirational</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 26px">life</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 24px">humor</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 22px">books</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 14px">reading</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 10px">friendship</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 8px">friends</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 8px">truth</a>
+                </span>
+                <span class="tag-item">
+                    <a class="tag" style="font-size: 6px">simile</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                Quotes by:
+                <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+            </p>
+            <p class="copyright">
+                Made with
+                <span class="sh-red">❤</span>
+                by
+                <a href="https://scrapinghub.com">Scrapinghub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

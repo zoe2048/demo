@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load quotes_extras %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Quotes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row header-box">
+            <div class="col-md-8">
+                <h1>
+                    <a href="" style="text-decoration: none">Quotes to Scrape</a>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <a>Login</a>
+                </p>
+            </div>
+        </div>
+        {% if author %}
+        <div class="author-details">
+            <h3 class="author-title">{{ author.name }}</h3>
+            <p>
+                <strong>Born:</strong>
+                <span class="author-born-date">{{ author.birth }}}</span>
+                <span class="author-born-location">{{ author.country }}</span>
+            </p>
+            <p>
+                <strong>Description:</strong>
+            </p>
+            <div class="author-description">{{ author.bio }}</div>
+        </div>
+        {% endif %}
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">
+                Quotes by:
+                <a href="https://www.goodreads.com/quotes">GoodReads.com</a>
+            </p>
+            <p class="copyright">
+                Made with
+                <span class="sh-red">❤</span>
+                by
+                <a href="https://scrapinghub.com">Scrapinghub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
