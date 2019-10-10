@@ -1,5 +1,5 @@
 ### 实现内容
-参照网站 http://quotes.toscrape.com/，使用django框架实现搭建一个一样的网站
+参照网站 http://quotes.toscrape.com/ 使用django框架实现搭建一个一样的网站
 
 
 ### 数据来源
